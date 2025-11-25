@@ -12,22 +12,30 @@ const refs = {
 refs.form.addEventListener('submit', e => {
     e.preventDefault();
     const query =  e.target.elements.searchText.value;
+    if (query.trim() === "") {
+        return iziToast.error({
+            message: 'Please enter query!',
+            position: 'topRight'
+        })
+    }
     clearGallery();
       showLoader();
 
     getImagesByQuery(query)
     .then(response => 
         {    
-        if(response.totalHits == 0)(
+        if(response.totalHits == 0){
             iziToast.error({
                 message:'Sorry, there are no images matching your search query. Please try again!',
                 position: 'topRight'
             })
-        )       
+        };
         createGallery(response.hits)
          
     })
-    .catch(err => console.log(err))
+    .catch(err => iziToast.error({
+        message: err
+    }))
     .finally(() => {
         hideLoader();
     })

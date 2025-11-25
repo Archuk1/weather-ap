@@ -42,9 +42,9 @@ export function clearGallery(){
 };
 
 export function showLoader(){
- refs.loader.classList.remove('hiden')
+ refs.loader.classList.remove('hidden')
 };
 
 export function hideLoader(){
-    refs.loader.classList.add('hiden')
+    refs.loader.classList.add('hidden')
 };
