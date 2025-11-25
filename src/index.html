@@ -8,25 +8,21 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <header class="header">
-      <div class="container">
-        <nav class="nav">
-          <ul class="nav-list">
-            <li class="nav-item">
-              <a class="nav-link {=$highlight-act}" href="./1-timer.html"
-                >Timer</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {=$highlight-curr}" href="./2-snackbar.html"
-                >Snackbar</a
-              >
-            </li>
-          </ul>
-        </nav>
+    <main>
+      <div class="container form-container">
+        <form class="form">
+          <label>
+            <input class="js-form-inpt" type="text" name="searchText" placeholder="Search images..." required>
+          </label>
+          <button class="js-form-btn" type="submit">Search</button>
+        </form>
       </div>
-    </header>
+      <div class="container gallery-container">
+        <ul class="gallery"></ul>
+        <span></span>
+      </div>
 
-    <main></main>
+    </main>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
