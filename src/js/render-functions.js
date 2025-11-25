@@ -3,7 +3,7 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const refs = {
     gallery: document.querySelector('.gallery'),
-    loader: document.querySelector('span')
+    loader: document.querySelector('.loader')
 }
 
 let modal = new SimpleLightbox('.gallery a', {
@@ -42,9 +42,9 @@ export function clearGallery(){
 };
 
 export function showLoader(){
- refs.loader.classList.add('loader')
+ refs.loader.classList.remove('hiden')
 };
 
 export function hideLoader(){
-    refs.loader.classList.remove('loader')
+    refs.loader.classList.add('hiden')
 };

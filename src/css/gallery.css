@@ -108,3 +108,7 @@ margin: auto;
   justify-content: center;
   align-items: center;
 }
+
+.hiden{
+  display: none;
+}
