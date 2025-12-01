@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <script type="module" crossorigin src="/weather-ap/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/weather-ap/assets/vendor-DeKi_rfE.js">
-    <link rel="stylesheet" crossorigin href="/weather-ap/assets/vendor-CXh9fJFm.css">
-    <link rel="stylesheet" crossorigin href="/weather-ap/assets/index-DF9V5vk7.css">
-  </head>
-  <body>
-    <main>
-      <div class="container form-container">
-        <form class="form">
-          <label>
-            <input class="js-form-inpt" type="text" name="searchText" placeholder="Search images..." required>
-          </label>
-          <button class="js-form-btn" type="submit">Search</button>
-        </form>
-      </div>
-      <div class="container gallery-container">
-        <ul class="gallery"></ul>
-        <span class="loader hidden"></span>
-        <button class="js-loadbtn hidden">Load More</button>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <script type="module" crossorigin src="/weather-ap/index.js"></script>
+  <link rel="modulepreload" crossorigin href="/weather-ap/assets/vendor-Vjjz0Re7.js">
+  <link rel="stylesheet" crossorigin href="/weather-ap/assets/vendor-BfMlxmOj.css">
+  <link rel="stylesheet" crossorigin href="/weather-ap/assets/index-BJUdBgRs.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
 
-    </main>
-  </body>
+    <div class="search">
+  <form class="js-form">
+    <input
+      type="text"
+      id="latiude"
+      placeholder="Enter latiude"
+      name="lat"
+      required
+    >
+    <input
+      type="text"
+      id="longitude"
+      placeholder="Enter longitude"
+      name="lon"
+      required
+    >
+    <button id="getWeather">Get Weather</button>
+  </form>
+</div>
+
+
+
+    <div id="weatherResult" class="weather-card">
+      
+    </div>
+  </div>
+
+</body>
 </html>
