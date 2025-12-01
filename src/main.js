@@ -1,121 +1,39 @@
-import getImagesByQuery from "./js/pixabay-api";
+import "./css/styles.css";
+import fetchWeather from "./js/weather-api";
+import renderCard from "./js/render-functions";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-import { createGallery, clearGallery,hideLoader,showLoader,showLoadMoreButton,hideLoadMoreButton } from "./js/render-functions";
 
 const refs = {
-    form: document.querySelector('.form'),
-    loadMoreBtn: document.querySelector('.js-loadbtn'),
+  form: document.querySelector('.js-form'),
 }
 
-let page;
-let query;
-let totalPage;
 
-refs.form.addEventListener('submit', async e => {
-    e.preventDefault();
-    hideLoadMoreButton();
-    clearGallery();
-    showLoader();
-
-    page = 1;
-    query =  e.target.elements.searchText.value;
-
-    if (query.trim() === "") {
-        hideLoader();
-        return iziToast.error({
-            message: 'Please enter query!',
-            position: 'topRight'
-        })
-    }
-    
-
-try {   
-        const response = await getImagesByQuery(query,page);
-
-        totalPage = Math.ceil(response.totalHits / 15);
-
-        if(response.totalHits == 0){
-           hideLoader();
-           return iziToast.error({
-                message:'Sorry, there are no images matching your search query. Please try again!',
-                position: 'topRight'
-            })
-        } else {
-        createGallery(response.hits);   
-        hideLoader();
-        }
-        
-        if (page < totalPage) {
-            showLoadMoreButton()
-        } else {
-         iziToast.info({
-            message: `We're sorry, but you've reached the end of search results.`,
-            position: 'topRight'
-        })
-        };
-
-        
-
-} catch (err) {
-
-     hideLoader();
-     hideLoadMoreButton();
-
-     iziToast.error({message: err.message,
-        position: 'topRight'
-     })
-} 
-
-    e.target.reset();
-})
-
-
-
-
-
-
-refs.loadMoreBtn.addEventListener('click', async()=>{
-    page += 1;
-    hideLoadMoreButton();
-    
-    let  galleryCard = document.querySelector('.gallery-item');
-    let rect = galleryCard.getBoundingClientRect();
-
-  
-
-   try{
-    showLoader();
-     const response = await getImagesByQuery(query,page);
-    createGallery(response.hits)
-    hideLoader();
-    window.scrollBy({
-        top: rect.height * 2,
-        behavior: 'smooth',
-        
+refs.form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const lat = formData.get('lat');
+  const lon = formData.get('lon');
+try{
+  if(lat.trim() === "" || lon.trim() === ""){
+    return iziToast.error({
+      message: 'Enter all fields',
+      position: 'topRight'
     })
-    
-     if(page < totalPage){
-        showLoadMoreButton();
-    } else {
-         iziToast.info({
-            message: `We're sorry, but you've reached the end of search results.`,
-            position: 'topRight'
-        })
-    }
-  
-    
-   } catch(err){
+  }
 
-    hideLoader();
-    hideLoadMoreButton();
-    
-    iziToast.error({
-        message:err.message,
-        position:'topRight'
-    })
-   }
-    
+  const response = await fetchWeather(lat,lon);
+  renderCard(response.forecast);
+
+} catch(err) {
+  return iziToast.error({
+    message: err.message,
+    position: 'topRight'
+  })
+}  
+  
+  
+  e.target.reset();
 
 })
 

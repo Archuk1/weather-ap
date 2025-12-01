@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <main>
-      <div class="container form-container">
-        <form class="form">
-          <label>
-            <input class="js-form-inpt" type="text" name="searchText" placeholder="Search images..." required>
-          </label>
-          <button class="js-form-btn" type="submit">Search</button>
-        </form>
-      </div>
-      <div class="container gallery-container">
-        <ul class="gallery"></ul>
-        <span class="loader hidden"></span>
-        <button class="js-loadbtn hidden">Load More</button>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
 
-    </main>
-    <script type="module" src="./main.js"></script>
-  </body>
+    <div class="search">
+  <form class="js-form">
+    <input
+      type="text"
+      id="latiude"
+      placeholder="Enter latiude"
+      name="lat"
+      required
+    >
+    <input
+      type="text"
+      id="longitude"
+      placeholder="Enter longitude"
+      name="lon"
+      required
+    >
+    <button id="getWeather">Get Weather</button>
+  </form>
+</div>
+
+
+
+    <div id="weatherResult" class="weather-card">
+      
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
 </html>
